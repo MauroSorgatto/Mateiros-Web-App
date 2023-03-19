@@ -5,7 +5,7 @@ import { prisma } from "~/db.server";
 
 export type { User } from "@prisma/client";
 
-type NewUser = Omit<User, "createdAt" | "updatedAt"> & {
+type NewUser = Omit<User, "id" | "createdAt" | "updatedAt"> & {
   password: string;
 };
 

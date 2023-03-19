@@ -95,7 +95,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  const user = await createUser(email, password);
+  const user = await createUser({ email, password, name, phonenumber });
 
   return new Response(
     JSON.stringify(user),
