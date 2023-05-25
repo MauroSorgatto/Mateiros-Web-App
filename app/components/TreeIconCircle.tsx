@@ -21,7 +21,7 @@ export const TreeCircleIcon = () => {
         height="48"
         rx="24"
         stroke="#FFFBEB"
-        stroke-width="8"
+        strokeWidth="8"
       />
       <defs>
         <clipPath id="clip0_642_91723">

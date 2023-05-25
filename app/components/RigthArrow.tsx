@@ -10,9 +10,9 @@ export const RigthArrow = () => {
       <path
         d="M1.66667 6.99996H13.3333M13.3333 6.99996L7.5 1.16663M13.3333 6.99996L7.5 12.8333"
         stroke="white"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.66667"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
