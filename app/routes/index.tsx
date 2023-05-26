@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -12,14 +12,26 @@ import { NavLink, useLoaderData } from "@remix-run/react";
 import { Logo } from "~/components/Logo";
 import { Header } from "~/components/Header";
 import { Button } from "~/components/Button";
+import { NewProjectModal } from "./basecase";
+import { ModalInput } from "./caseimageproject";
 
-const EmptyState = () => (
+const ProjectCard = ({ project }: { project: any }) => <></>;
+
+const ProjectList = ({ projects }: { projects: [] }) => (
+  <>
+    {projects.map((project: any) => (
+      <ProjectCard key={project.id} project={project} />
+    ))}
+  </>
+);
+
+const EmptyState = ({ onNewProject }: { onNewProject: () => void }) => (
   <Column className="items-center">
     <h2 className="font-semibold text-gray-900">Crie seu primeiro projeto</h2>
     <p className="text-sm text-gray-600">
       Você ainda não tem nenhum projeto criado.
     </p>
-    <Button className="mt-6">
+    <Button className="mt-6" onClick={onNewProject}>
       <PlusCircleIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
       Novo Projeto
     </Button>
@@ -31,6 +43,7 @@ const user = {
   email: "tom@example.com",
   imageUrl: "https://placehold.co/256x256@3x.png",
 };
+
 const navigation = [
   { name: "Projetos", href: "projects", current: true },
   { name: "Relatórios", href: "reports", current: false },
@@ -50,8 +63,12 @@ export const loader: LoaderFunction = () => {
   return { projects: [] };
 };
 
-export default function Example() {
+export default function Projects() {
   const { projects } = useLoaderData();
+  const [showNewProjectModal, setShowNewProjectModal] = useState(false);
+  const [showFazendaMateiroModal, setShowFazendaMateiroModal] = useState(false);
+
+  const [projectName, setProjectName] = useState("");
 
   return (
     <div className="h-full">
@@ -209,11 +226,34 @@ export default function Example() {
       </Disclosure>
 
       <Column className="mx-auto h-full max-w-7xl sm:px-6 lg:px-8">
-        <Header title="Projetos" />
+        <Header
+          title="Projetos"
+          onNewProject={() => setShowNewProjectModal(true)}
+        />
         <main className="h-full">
           <Column className="flex h-full flex-col items-center justify-center">
-            {projects.length > 0 ? <></> : <EmptyState />}
+            {projects.length > 0 ? (
+              <ProjectList projects={projects} />
+            ) : (
+              <EmptyState onNewProject={() => setShowNewProjectModal(true)} />
+            )}
           </Column>
+
+          <NewProjectModal
+            value={projectName}
+            onChange={setProjectName}
+            isOpen={showNewProjectModal}
+            onClose={() => setShowNewProjectModal(false)}
+            onSubmit={() => {
+              setShowNewProjectModal(false);
+              setShowFazendaMateiroModal(true);
+            }}
+          />
+
+          <ModalInput
+            isOpen={showFazendaMateiroModal}
+            onClose={() => setShowFazendaMateiroModal(false)}
+          />
         </main>
       </Column>
     </div>
