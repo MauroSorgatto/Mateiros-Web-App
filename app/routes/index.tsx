@@ -246,13 +246,25 @@ export default function Projects() {
             onChange={setProjectName}
             isOpen={showNewProjectModal}
             onClose={() => setShowNewProjectModal(false)}
-            onSubmit={() => {
+            onSubmit={(event) => {
+              event.preventDefault();
+              const target = event.target as typeof event.target & {
+                projectName: { value: string };
+              };
+
+              setProjectName(target.projectName.value);
+
               setShowNewProjectModal(false);
               setShowFazendaMateiroModal(true);
             }}
           />
 
           <FazendaModal
+            projectName={projectName}
+            onNewTree={() => {
+              setShowFazendaMateiroModal(false);
+              setShowImageAddModal(true);
+            }}
             isOpen={showFazendaMateiroModal}
             onClose={() => setShowFazendaMateiroModal(false)}
             onSubmit={() => {
@@ -260,9 +272,13 @@ export default function Projects() {
               setShowImageAddModal(true);
             }}
           />
+
           <ImageAddModal
             isOpen={showImageAddModal}
-            onClose={() => setShowImageAddModal(false)}
+            onClose={() => {
+              setShowImageAddModal(false);
+              setShowFazendaMateiroModal(true);
+            }}
             onSubmit={() => {
               setShowFazendaMateiroModal(false);
               setShowImageAddModal(true);

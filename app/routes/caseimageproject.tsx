@@ -1,6 +1,6 @@
 import { Dialog } from "@headlessui/react";
+import { AdicionarArvores } from "~/components/AdicionarArvores";
 import { Button } from "~/components/Button";
-import { ImageDropzone } from "~/components/ImageDropzone";
 import { LogoAddProject } from "~/components/LogoAddProject";
 import type { ModalProps } from "~/components/Modal";
 import { Modal } from "~/components/Modal";
@@ -8,15 +8,23 @@ import { RigthArrow } from "~/components/RigthArrow";
 
 type Props = ModalProps & {
   onSubmit: () => void;
+  onNewTree: () => void;
+  projectName: string;
 };
 
-export const FazendaModal = ({ isOpen, onClose, onSubmit }: Props) => (
+export const FazendaModal = ({
+  projectName,
+  isOpen,
+  onClose,
+  onNewTree,
+  onSubmit,
+}: Props) => (
   <Modal isOpen={isOpen} onClose={onClose}>
     <div className="flex flex-row">
       <LogoAddProject />
       <div className="ml-4 flex flex-col">
         <Dialog.Title className="text-lg font-semibold">
-          Fazenda Mateiros
+          {projectName}
         </Dialog.Title>
         <Dialog.Description className="text-sm">
           Adicione arvores para serem avaliadas
@@ -24,9 +32,9 @@ export const FazendaModal = ({ isOpen, onClose, onSubmit }: Props) => (
       </div>
     </div>
     <div className="mt-10 flex flex-row justify-between">
-      <ImageDropzone />
-      <ImageDropzone disabled />
-      <ImageDropzone disabled />
+      <AdicionarArvores onClick={onNewTree} />
+      <AdicionarArvores disabled />
+      <AdicionarArvores disabled />
     </div>
     <div className="mt-16 flex flex-row justify-end">
       <button
