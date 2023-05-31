@@ -2,8 +2,8 @@ import { Dialog } from "@headlessui/react";
 import { Button } from "~/components/Button";
 import type { ModalProps } from "~/components/Modal";
 import { Modal } from "~/components/Modal";
-import { RigthArrow } from "~/components/RigthArrow";
-import { TreeCircleIcon } from "~/components/TreeIconCircle";
+import { RigthArrow } from "~/components/icons/RigthArrow";
+import { TreeCircleIcon } from "~/components/icons/TreeIconCircle";
 import { UploadImage } from "~/components/UploadImage";
 
 type Props = ModalProps & {

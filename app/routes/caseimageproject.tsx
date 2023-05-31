@@ -1,10 +1,10 @@
 import { Dialog } from "@headlessui/react";
 import { AdicionarArvores } from "~/components/AdicionarArvores";
 import { Button } from "~/components/Button";
-import { LogoAddProject } from "~/components/LogoAddProject";
+import { LogoAddProject } from "~/components/icons/LogoAddProject";
 import type { ModalProps } from "~/components/Modal";
 import { Modal } from "~/components/Modal";
-import { RigthArrow } from "~/components/RigthArrow";
+import { RigthArrow } from "~/components/icons/RigthArrow";
 
 type Props = ModalProps & {
   onSubmit: () => void;

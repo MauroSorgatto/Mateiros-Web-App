@@ -9,7 +9,7 @@ import {
 import { Column } from "~/components/layout/Flex";
 import type { LoaderFunction } from "@remix-run/server-runtime";
 import { NavLink, useLoaderData } from "@remix-run/react";
-import { Logo } from "~/components/Logo";
+import { Logo } from "~/components/icons/Logo";
 import { Header } from "~/components/Header";
 import { Button } from "~/components/Button";
 import { NewProjectModal } from "./basecase";
