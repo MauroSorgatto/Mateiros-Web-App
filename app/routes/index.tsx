@@ -9,11 +9,12 @@ import {
 import { Column } from "~/components/layout/Flex";
 import type { LoaderFunction } from "@remix-run/server-runtime";
 import { NavLink, useLoaderData } from "@remix-run/react";
-import { Logo } from "~/components/Logo";
+import { Logo } from "~/components/icons/Logo";
 import { Header } from "~/components/Header";
 import { Button } from "~/components/Button";
 import { NewProjectModal } from "./basecase";
-import { ModalInput } from "./caseimageproject";
+import { FazendaModal } from "./caseimageproject";
+import { ImageAddModal } from "./imageAddmodal";
 
 const ProjectCard = ({ project }: { project: any }) => <></>;
 
@@ -67,6 +68,7 @@ export default function Projects() {
   const { projects } = useLoaderData();
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [showFazendaMateiroModal, setShowFazendaMateiroModal] = useState(false);
+  const [showImageAddModal, setShowImageAddModal] = useState(false);
 
   const [projectName, setProjectName] = useState("");
 
@@ -244,15 +246,43 @@ export default function Projects() {
             onChange={setProjectName}
             isOpen={showNewProjectModal}
             onClose={() => setShowNewProjectModal(false)}
-            onSubmit={() => {
+            onSubmit={(event) => {
+              event.preventDefault();
+              const target = event.target as typeof event.target & {
+                projectName: { value: string };
+              };
+
+              setProjectName(target.projectName.value);
+
               setShowNewProjectModal(false);
               setShowFazendaMateiroModal(true);
             }}
           />
 
-          <ModalInput
+          <FazendaModal
+            projectName={projectName}
+            onNewTree={() => {
+              setShowFazendaMateiroModal(false);
+              setShowImageAddModal(true);
+            }}
             isOpen={showFazendaMateiroModal}
             onClose={() => setShowFazendaMateiroModal(false)}
+            onSubmit={() => {
+              setShowFazendaMateiroModal(false);
+              setShowImageAddModal(true);
+            }}
+          />
+
+          <ImageAddModal
+            isOpen={showImageAddModal}
+            onClose={() => {
+              setShowImageAddModal(false);
+              setShowFazendaMateiroModal(true);
+            }}
+            onSubmit={() => {
+              setShowFazendaMateiroModal(false);
+              setShowImageAddModal(true);
+            }}
           />
         </main>
       </Column>

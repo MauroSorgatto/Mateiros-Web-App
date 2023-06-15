@@ -1,6 +1,6 @@
-import { CloseIcon } from "~/components/CloseIcon";
-import { RigthArrow } from "~/components/RigthArrow";
-import { TreeCircleIcon } from "~/components/TreeIconCircle";
+import { CloseIcon } from "~/components/icons/CloseIcon";
+import { RigthArrow } from "~/components/icons/RigthArrow";
+import { TreeCircleIcon } from "~/components/icons/TreeIconCircle";
 
 export default function ModalTreeDetails() {
   return (
