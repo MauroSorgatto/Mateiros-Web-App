@@ -1,6 +1,6 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 
-export const AdicionarArvores = ({
+export const AddTree = ({
   disabled = false,
   onClick,
 }: {

@@ -1,5 +1,5 @@
 import { Dialog } from "@headlessui/react";
-import { AdicionarArvores } from "~/components/AdicionarArvores";
+import { AddTree } from "~/components/AddTree";
 import { Button } from "~/components/Button";
 import { LogoAddProject } from "~/components/icons/LogoAddProject";
 import type { ModalProps } from "~/components/Modal";
@@ -32,9 +32,9 @@ export const FazendaModal = ({
       </div>
     </div>
     <div className="mt-10 flex flex-row justify-between">
-      <AdicionarArvores onClick={onNewTree} />
-      <AdicionarArvores disabled />
-      <AdicionarArvores disabled />
+      <AddTree onClick={onNewTree} />
+      <AddTree disabled />
+      <AddTree disabled />
     </div>
     <div className="mt-16 flex flex-row justify-end">
       <button

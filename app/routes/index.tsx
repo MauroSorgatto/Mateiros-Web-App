@@ -34,7 +34,7 @@ const EmptyState = ({ onNewProject }: { onNewProject: () => void }) => (
     </p>
     <Button className="mt-6" onClick={onNewProject}>
       <PlusCircleIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
-      Novo Projeto
+      Novo Projeto + Olá
     </Button>
   </Column>
 );

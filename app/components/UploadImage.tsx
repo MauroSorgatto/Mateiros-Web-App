@@ -7,7 +7,7 @@ import { CheckBox } from "./icons/CheckBoxIcon";
 import ProgressBar from "./icons/ProgressBar.png";
 
 export const UploadImage = ({ disabled = false }: { disabled?: boolean }) => {
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     disabled,
   });
 
