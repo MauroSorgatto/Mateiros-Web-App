@@ -11,7 +11,7 @@ type Props = ModalProps & {
   onChange: (value: string) => void;
 };
 
-export const NewProjectModal = ({ isOpen, onClose, onSubmit }: Props) => (
+export const CreateProjectModal = ({ isOpen, onClose, onSubmit }: Props) => (
   <Modal isOpen={isOpen} onClose={onClose}>
     <form onSubmit={onSubmit}>
       <div className="flex flex-row">

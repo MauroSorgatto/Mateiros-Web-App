@@ -1,29 +1,41 @@
 import { Dialog } from "@headlessui/react";
+import { AddTree } from "~/components/dialog/AddTree";
 import { Button } from "~/components/Button";
+import { LogoAddProject } from "~/components/icons/LogoAddProject";
 import type { ModalProps } from "~/components/Modal";
 import { Modal } from "~/components/Modal";
 import { RigthArrow } from "~/components/icons/RigthArrow";
-import { TreeCircleIcon } from "~/components/icons/TreeIconCircle";
-import { UploadImage } from "~/components/UploadImage";
 
 type Props = ModalProps & {
   onSubmit: () => void;
+  onNewTree: () => void;
+  projectName: string;
 };
 
-export const ImageAddModal = ({ isOpen, onClose, onSubmit }: Props) => (
+export const ProjectDetailsModal = ({
+  projectName,
+  isOpen,
+  onClose,
+  onNewTree,
+  onSubmit,
+}: Props) => (
   <Modal isOpen={isOpen} onClose={onClose}>
     <div className="flex flex-row">
-      <TreeCircleIcon />
+      <LogoAddProject />
       <div className="ml-4 flex flex-col">
-        <Dialog.Title className="text-lg font-semibold">Arvore 1</Dialog.Title>
-
-        <Dialog.Description className="text-sm text-gray-600">
-          Adicione as fotos das arvores
+        <Dialog.Title className="text-lg font-semibold">
+          {projectName}
+        </Dialog.Title>
+        <Dialog.Description className="text-sm">
+          Adicione arvores para serem avaliadas
         </Dialog.Description>
       </div>
     </div>
-    <UploadImage />
-
+    <div className="mt-10 flex flex-row justify-between">
+      <AddTree onClick={onNewTree} />
+      <AddTree disabled />
+      <AddTree disabled />
+    </div>
     <div className="mt-16 flex flex-row justify-end">
       <button
         onClick={onClose}
