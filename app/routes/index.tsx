@@ -19,7 +19,6 @@ export default function Projects() {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [showProjectDetailsModal, setShowProjectDetailsModal] = useState(false);
   const [showImageAddModal, setShowImageAddModal] = useState(false);
-
   const [projectName, setProjectName] = useState("");
 
   return (
