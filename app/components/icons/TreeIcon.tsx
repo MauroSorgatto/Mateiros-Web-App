@@ -1,4 +1,4 @@
-export const TreeIcon = ({ color }) => {
+export const TreeIcon = ({ color }: { color: string }) => {
   return (
     <svg
       width="16"
