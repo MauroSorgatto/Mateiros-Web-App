@@ -11,7 +11,7 @@ export const sessionStorage = createCookieSessionStorage({
     name: "__session",
     httpOnly: true,
     path: "/",
-    sameSite: "gru",
+    sameSite: "lax",
     secrets: [process.env.SESSION_SECRET],
     secure: process.env.NODE_ENV === "production",
   },
@@ -67,15 +67,16 @@ export async function createUserSession({
   request,
   userId,
   remember,
+  redirectTo,
 }: {
   request: Request;
   userId: string;
   remember: boolean;
+  redirectTo: string;
 }) {
   const session = await getSession(request);
   session.set(USER_SESSION_KEY, userId);
-
-  return {
+  return redirect(redirectTo, {
     headers: {
       "Set-Cookie": await sessionStorage.commitSession(session, {
         maxAge: remember
@@ -83,15 +84,14 @@ export async function createUserSession({
           : undefined,
       }),
     },
-  };
+  });
 }
 
 export async function logout(request: Request) {
   const session = await getSession(request);
-
-  return {
+  return redirect("/", {
     headers: {
       "Set-Cookie": await sessionStorage.destroySession(session),
     },
-  };
+  });
 }

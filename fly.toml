@@ -1,5 +1,4 @@
 app = "mateiros-remix-97f1"
-primary_region = "gru"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = [ ]

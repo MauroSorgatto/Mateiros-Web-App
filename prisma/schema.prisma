@@ -8,15 +8,14 @@ generator client {
 }
 
 model User {
-  id          String  @id @default(cuid())
-  email       String  @unique
-  name        String?
-  phonenumber String?
+  id    String @id @default(cuid())
+  email String @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   password Password?
+  notes    Project[]
 }
 
 model Password {
@@ -26,14 +25,14 @@ model Password {
   userId String @unique
 }
 
-model Tree {
-  id      String    @id @default(cuid())
-  name    String
-  Project Project[]
-}
-
 model Project {
-  id       String  @id @default(cuid())
-  name     String?
-  treeList Tree[]
+  id    String @id @default(cuid())
+  title String
+  body  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String
 }
